@@ -18,15 +18,14 @@ install(){
 }
 
 
-init_server(){
-    if [ "x$2" == x ] || [ "x$3" == x ]; then
+init(){
+    if [ "$2" == "" ] || [ "$3" == "" ]; then
         echo "Usage: $0 init <server-name> <server-port>" >&2
         exit 1
     fi
     
     SERVER_NAME="$2"
     SERVER_PORT=$3
-
 
     SERVERS_PATH="$BASE_DIR/servers"
     CONFIG_PATH="$BASE_DIR/conf"
@@ -42,9 +41,8 @@ init_server(){
     
     sed -i "s/PORT/$SERVER_PORT/g" "$SERVER_PATH/spunky-conf/conf/settings.conf"
     
-    docker run -d -v "$SERVER_PATH"/q3ut4:/q3ut4 -v "$CONFIG_PATH/maps/":/maps \ 
-                    -e URT_PORT=$SERVER_PORT \
-                    --net host --name="${SERVER_NAME}_urtserver" urbanterror-server
+    docker run -d -v "$SERVER_PATH"/q3ut4:/q3ut4 -v "$CONFIG_PATH"/maps:/maps -e URT_PORT=$SERVER_PORT \
+                    --net=host --name="${SERVER_NAME}_urtserver" urbanterror-server
     
     sleep 15
     
@@ -55,7 +53,7 @@ init_server(){
 
 
 remove(){
-    if [ "x$2" == x ]; then
+    if [ "$2" == "" ]; then
         echo "Usage: $0 remove <server-name>" >&2
         exit 1
     fi
@@ -81,9 +79,9 @@ remove(){
 if [ "$1" = "install" ]; then
     install
 elif [ "$1" = "init" ]; then
-    init
-elif [ "$1" = "remove"]; then
-    remove
+    init "$@"
+elif [ "$1" = "remove" ]; then
+    remove "$@"
 else
     echo "Usage: $0 install|init|remove" >&2
     exit 1
