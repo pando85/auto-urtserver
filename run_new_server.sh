@@ -24,7 +24,8 @@ sed -i "s/PASSWORD/$NEW_PASSWORD/g" "$SERVER_PATH"/{q3ut4/server.cfg,spunky-conf
 
 sed -i "s/PORT/$SERVER_PORT/g" "$SERVER_PATH/spunky-conf/conf/settings.conf"
 
-sudo docker run -d -v "$SERVER_PATH"/q3ut4:/q3ut4 -e URT_PORT=$SERVER_PORT \
+sudo docker run -d -v "$SERVER_PATH"/q3ut4:/q3ut4 -v "$CONFIG_PATH/maps/":/maps \ 
+                -e URT_PORT=$SERVER_PORT \
                 --net host --name="${SERVER_NAME}_urtserver" urbanterror-server
 
 sleep 15

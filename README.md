@@ -12,3 +12,6 @@ sudo bash install.sh
 ```bash
 sudo run_new_server.sh <server-name> <port>
 ```
+
+## Install new maps
+To install new maps just copy them inside ```conf/maps``` directory.
