@@ -6,7 +6,7 @@ if [ "x$1" == x ] || [ "x$2" == x ]; then
     exit 1
 fi
 
-SERVER_NAME=$1
+SERVER_NAME="$1"
 SERVER_PORT=$2
 
 BASE_DIR="$(dirname -- $(readlink -fn -- "$0"))"
