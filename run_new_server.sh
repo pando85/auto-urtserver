@@ -10,12 +10,13 @@ SERVER_NAME="$1"
 SERVER_PORT=$2
 
 BASE_DIR="$(dirname -- $(readlink -fn -- "$0"))"
+SERVERS_PATH="$BASE_DIR/servers"
 CONFIG_PATH="$BASE_DIR/conf"
-SERVER_PATH="${BASE_DIR}/servers/$SERVER_NAME"
+SERVER_PATH="$SERVERS_PATH/$SERVER_NAME"
 
 NEW_PASSWORD=$(date | md5sum |cut -d " " -f 1)
 
-mkdir -p "$SERVER_PATH"
+mkdir -p "$SERVERS_PATH"
 
 cp -r "$CONFIG_PATH" "$SERVER_PATH"
 
