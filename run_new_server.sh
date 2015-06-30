@@ -22,6 +22,8 @@ cp -r "$CONFIG_PATH" "$SERVER_PATH"
 
 sed -i "s/PASSWORD/$NEW_PASSWORD/g" "$SERVER_PATH"/{q3ut4/server.cfg,spunky-conf/conf/settings.conf}
 
+sed -i "s/PORT/$SERVER_PORT/g" "$SERVER_PATH/spunky-conf/conf/settings.conf"
+
 docker run -d -v "$SERVER_PATH"/q3ut4:/q3ut4 -e URT_PORT=$SERVER_PORT \
            --net host --name="${SERVER_NAME}_urtserver" urbanterror-server
 
