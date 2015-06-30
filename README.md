@@ -5,12 +5,17 @@ Script to create an Urban Terror server using docker.
 
 ## Build docker images
 ```bash
-sudo bash install.sh
+sudo bash auto-urtservers.sh install
 ```
 
 ## Create new server
 ```bash
-sudo run_new_server.sh <server-name> <port>
+sudo bash auto-urtservers.sh init <server-name> <port>
+```
+
+## Remove server
+```bash
+sudo bash auto-urtservers.sh remove <server-name>
 ```
 
 ## Install new maps
