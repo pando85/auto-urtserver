@@ -1,6 +1,7 @@
 #!/bin/bash
+set -e
 
-docker build -t urbanterror-server github.com/pando85/docker-UrbanTerror
+sudo docker build -t urbanterror-server github.com/pando85/docker-UrbanTerror
 
 #docker build -t b3 github.com/pando85/b3-Dockerfiles
-docker build -t spunkybot github.com/pando85/docker-spunkybot
+sudo docker build -t spunkybot github.com/pando85/docker-spunkybot
