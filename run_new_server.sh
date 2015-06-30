@@ -10,13 +10,14 @@ SERVER_NAME="$1"
 SERVER_PORT=$2
 
 BASE_DIR="$(dirname -- $(readlink -fn -- "$0"))"
+CONFIG_PATH="$BASE_DIR/conf"
 SERVER_PATH="${BASE_DIR}/servers/$SERVER_NAME"
 
 NEW_PASSWORD=$(date | md5sum |cut -d " " -f 1)
 
 mkdir -p "$SERVER_PATH"
 
-cp -r conf "$SERVER_PATH"
+cp -r "$CONFIG_PATH" "$SERVER_PATH"
 
 sed -i "s/PASSWORD/$NEW_PASSWORD/g" "$SERVER_PATH"/{q3ut4/server.cfg,spunky-conf/conf/settings.conf}
 
